@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #1c2833, #3498db);
+    color: #ecf0f1;
+    overflow-x: hidden;
+  }
+  
+  /* Header and Navbar */
+  header {
+    width: 100%;
+    background-color: #1c1c1c;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    color: white;
+  }
+  
+  .navbar-brand {
+    font-size: 32px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff8c00, #ffa500, #ffcc00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradient-shift 5s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Overlay and Container */
+  .overlay {
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+  }
+  
+  .container {
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .container:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 16px 60px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Headings */
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: #ffcc00;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  h1:hover {
+    color: #ffa500;
+    text-shadow: 4px 4px 16px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  #searchInput,
+  #searchButton {
+    font-size: 1.2rem;
+    padding: 15px;
+    border: none;
+  }
+  
+  #searchInput {
+    width: 70%;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #searchInput:focus {
+    background-color: #2c3e50;
+    box-shadow: 0 0 15px #ffa500;
+  }
+  
+  #searchButton {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  #searchButton:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffa500;
+  }
+  
+  /* Movie Cards */
+  .movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+  
+  .movie-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    width: 230px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.6s ease, box-shadow 0.5s ease;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    height: 350px;
+  }
+  
+  .movie-card-front,
+  .movie-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie-card-front {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .movie-card-back {
+    background: rgba(44, 62, 80, 0.8);
+    transform: rotateY(180deg);
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.15) rotateY(180deg);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+  }
+  
+  .movie-poster {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffcc00;
+  }
+  
+  .movie-details {
+    font-size: 1rem;
+    color: #ecf0f1;
+    text-align: left;
+  }
+  
+  /* Modal Styling */
+  /* Modal styling */
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+    /* Center the modal content vertically */
+    overflow-y: auto;
+    /* Allow scrolling if the content overflows the modal */
+  }
+  
+  .modal-content {
+    background-color: #1c2833;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    height: max-content;
+    max-width: 700px;
+    color: #ecf0f1;
+    margin: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100%);
+    /* Move the modal content slightly upwards */
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .modal-movie-poster {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .modal-movie-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffcc00;
+  }
+  
+  .modal-movie-details {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .modal-movie-description {
+    font-size: 1rem;
+    color: #ecf0f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .movie-card {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  
+    .movie-container {
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    #searchInput,
+    #searchButton {
+      width: 100%;
+      font-size: 1rem;
+      padding: 15px;
+    }
+  }
